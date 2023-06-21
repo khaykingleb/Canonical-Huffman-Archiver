@@ -46,7 +46,7 @@ build:  ## Build project
 .PHONY: build
 
 tests:  ## Run tests
-	cd build && ctest
+	cd build && cd tests && ctest
 .PHONY: tests
 
 ##==================================================================================================
