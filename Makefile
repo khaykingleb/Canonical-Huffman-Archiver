@@ -31,18 +31,7 @@ repo-init: repo-prerequisites repo-deps repo-pre-commit  ## Initialize repo by e
 
 .ONESHELL:
 build:  ## Build project
-	poetry run conan install . \
-		--build=missing \
-		--profile=conanprofile.txt \
-		--settings=compiler.cppstd=gnu20
-	cd build
-	source Release/generators/conanbuild.sh
-	cmake .. \
-		-DCMAKE_TOOLCHAIN_FILE=Release/generators/conan_toolchain.cmake \
-		-DCMAKE_BUILD_TYPE=Release \
-		-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-	cmake --build .
-	source Release/generators/deactivate_conanbuild.sh
+	sh scripts/build.sh ${BUILD_TYPE}
 .PHONY: build
 
 tests:  ## Run tests
